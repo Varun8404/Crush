@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Answers ❤️</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+
+            margin: 0;
+
+            padding: 30px;
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff758c,
+                    #ff7eb3,
+                    #c471ed
+                );
+
+            min-height: 100vh;
+
+            color: #333;
+        }
+
+        .container {
+
+            max-width: 1000px;
+
+            margin: auto;
+        }
+
+        h1 {
+
+            color: white;
+
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+        .card {
+
+            background: white;
+
+            border-radius: 20px;
+
+            padding: 25px;
+
+            margin-bottom: 20px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(0,0,0,0.15);
+        }
+
+        .answer {
+
+            padding: 10px 0;
+
+            border-bottom:
+                1px solid #eee;
+        }
+
+        .answer:last-child {
+
+            border-bottom: none;
+        }
+
+        strong {
+
+            color: #e84373;
+        }
+
+        .logout {
+
+            display: block;
+
+            width: fit-content;
+
+            margin: 30px auto;
+
+            padding: 12px 25px;
+
+            background: white;
+
+            color: #e84373;
+
+            text-decoration: none;
+
+            border-radius: 30px;
+
+            font-weight: bold;
+        }
+
+        .empty {
+
+            text-align: center;
+
+            color: white;
+
+            font-size: 20px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>
+        💌 Crush Answers
+    </h1>
+
+
+    {% if answers %}
+
+        {% for answer in answers %}
+
+        <div class="card">
+
+            <div class="answer">
+                <strong>Do you know me?</strong>
+                {{ answer.knows_me }}
+            </div>
+
+            <div class="answer">
+                <strong>Do you like me?</strong>
+                {{ answer.likes_me }}
+            </div>
+
+            <div class="answer">
+                <strong>Wanna go on a date?</strong>
+                {{ answer.wants_date }}
+            </div>
+
+            <div class="answer">
+                <strong>Date place:</strong>
+                {{ answer.date_place }}
+            </div>
+
+            <div class="answer">
+                <strong>Date:</strong>
+                {{ answer.date_choice }}
+            </div>
+
+            <div class="answer">
+                <strong>Submitted:</strong>
+                {{ answer.submitted_at }}
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <div class="empty">
+
+            No answers yet 😭
+
+        </div>
+
+    {% endif %}
+
+
+    <a
+        class="logout"
+        href="/logout"
+    >
+        Logout
+    </a>
+
+</div>
+
+</body>
+
+</html>
