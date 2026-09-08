@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>A Little Question For You ❤️</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            min-height: 100vh;
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff758c,
+                    #ff7eb3,
+                    #c471ed
+                );
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            overflow: hidden;
+
+            color: white;
+        }
+
+
+        /* Floating hearts */
+
+        .hearts {
+
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            overflow: hidden;
+        }
+
+
+        .heart {
+
+            position: absolute;
+
+            bottom: -50px;
+
+            font-size: 22px;
+
+            animation:
+                floatUp
+                linear
+                forwards;
+
+            opacity: 0.8;
+        }
+
+
+        @keyframes floatUp {
+
+            from {
+
+                transform:
+                    translateY(0)
+                    rotate(0deg);
+
+                opacity: 0;
+            }
+
+            10% {
+
+                opacity: 0.8;
+            }
+
+            to {
+
+                transform:
+                    translateY(-110vh)
+                    rotate(360deg);
+
+                opacity: 0;
+            }
+        }
+
+
+        /* Main card */
+
+        .container {
+
+            width: min(92%, 620px);
+
+            min-height: 520px;
+
+            background:
+                rgba(255, 255, 255, 0.16);
+
+            backdrop-filter:
+                blur(18px);
+
+            -webkit-backdrop-filter:
+                blur(18px);
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.3);
+
+            border-radius: 30px;
+
+            padding: 40px 30px;
+
+            text-align: center;
+
+            box-shadow:
+                0 20px 60px
+                rgba(0, 0, 0, 0.2);
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        /* Typography */
+
+        .emoji {
+
+            font-size: 55px;
+
+            margin-bottom: 10px;
+        }
+
+
+        h1 {
+
+            font-size:
+                clamp(28px, 6vw, 42px);
+
+            margin:
+                10px 0;
+        }
+
+
+        h2 {
+
+            font-size:
+                clamp(23px, 5vw, 32px);
+
+            margin:
+                25px 0;
+        }
+
+
+        p {
+
+            font-size: 18px;
+
+            line-height: 1.6;
+        }
+
+
+        /* Hide sections */
+
+        .hidden {
+
+            display: none !important;
+        }
+
+
+        /* Buttons */
+
+        button {
+
+            border: none;
+
+            padding:
+                14px 28px;
+
+            border-radius: 50px;
+
+            font-size: 17px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.25s ease,
+                background 0.25s ease;
+
+            margin: 8px;
+        }
+
+
+        .yes {
+
+            background: white;
+
+            color: #e84373;
+
+            box-shadow:
+                0 8px 20px
+                rgba(0, 0, 0, 0.15);
+        }
+
+
+        .yes:hover {
+
+            transform:
+                scale(1.08);
+        }
+
+
+        .no {
+
+            background:
+                rgba(0, 0, 0, 0.2);
+
+            color: white;
+        }
+
+
+        /* Date-place options */
+
+        .options {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 12px;
+
+            margin-top: 25px;
+        }
+
+
+        .option {
+
+            width: 100%;
+
+            margin: 0;
+
+            background:
+                rgba(255, 255, 255, 0.2);
+
+            color: white;
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.35);
+        }
+
+
+        .option:hover {
+
+            background:
+                rgba(255, 255, 255, 0.35);
+
+            transform:
+                translateY(-3px);
+        }
+
+
+        /* Progress bar */
+
+        .progress {
+
+            height: 6px;
+
+            width: 100%;
+
+            background:
+                rgba(255, 255, 255, 0.2);
+
+            border-radius: 10px;
+
+            margin-bottom: 30px;
+
+            overflow: hidden;
+        }
+
+
+        .progress-bar {
+
+            height: 100%;
+
+            background: white;
+
+            border-radius: 10px;
+
+            transition:
+                width 0.5s ease;
+        }
+
+
+        /* Messages */
+
+        .message {
+
+            margin-top: 15px;
+
+            min-height: 25px;
+
+            font-size: 14px;
+        }
+
+
+        /* Date input */
+
+        .date-input {
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 15px;
+
+            font-size: 17px;
+
+            margin: 15px;
+
+            outline: none;
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
+        }
+
+
+        /* Final heart */
+
+        .final-heart {
+
+            font-size: 80px;
+
+            animation:
+                beat 1s infinite;
+        }
+
+
+        @keyframes beat {
+
+            0%, 100% {
+
+                transform:
+                    scale(1);
+            }
+
+            50% {
+
+                transform:
+                    scale(1.15);
+            }
+        }
+
+
+        .restart {
+
+            background: transparent;
+
+            color: white;
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.5);
+        }
+
+
+        /* Mobile */
+
+        @media (max-width: 500px) {
+
+            .container {
+
+                padding:
+                    30px 18px;
+            }
+
+
+            .options {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            button {
+
+                padding:
+                    13px 22px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- Floating hearts -->
+
+    <div
+        class="hearts"
+        id="hearts"
+    ></div>
+
+
+    <!-- Main container -->
+
+    <div class="container">
+
+
+        <!-- START SCREEN -->
+
+        <section
+            id="start"
+        >
+
+            <div class="emoji">
+                💌
+            </div>
+
+
+            <h1>
+                A Little Something For You
+            </h1>
+
+
+            <p>
+
+                I have a few very important
+                questions for you...
+
+                <br>
+
+                So please answer honestly. ❤️
+
+            </p>
+
+
+            <button
+                class="yes"
+                onclick="startQuiz()"
+            >
+
+                Okay, let's go 💕
+
+            </button>
+
+        </section>
+
+
+
+        <!-- QUESTION 1 -->
+
+        <section
+            id="question1"
+            class="hidden"
+        >
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar"
+                    style="width:20%"
+                ></div>
+
+            </div>
+
+
+            <div class="emoji">
+                👀
+            </div>
+
+
+            <h2>
+                Do you know me?
+            </h2>
+
+
+            <button
+                class="yes"
+                onclick="answerQ1('Yes')"
+            >
+
+                Yes ❤️
+
+            </button>
+
+
+            <button
+                class="no"
+                onclick="answerQ1('No')"
+            >
+
+                No
+
+            </button>
+
+        </section>
+
+
+
+        <!-- QUESTION 2 -->
+
+        <section
+            id="question2"
+            class="hidden"
+        >
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar"
+                    style="width:40%"
+                ></div>
+
+            </div>
+
+
+            <div class="emoji">
+                🥰
+            </div>
+
+
+            <h2>
+                Do you like me?
+            </h2>
+
+
+            <button
+                class="yes"
+                onclick="answerQ2('Yes')"
+            >
+
+                Yes ❤️
+
+            </button>
+
+
+            <button
+                class="no"
+                id="no2"
+                onmouseover="escapeButton('no2')"
+                ontouchstart="escapeButton('no2')"
+                onclick="escapeButton('no2')"
+            >
+
+                No 😈
+
+            </button>
+
+
+            <div
+                class="message"
+                id="message2"
+            ></div>
+
+        </section>
+
+
+
+        <!-- QUESTION 3 -->
+
+        <section
+            id="question3"
+            class="hidden"
+        >
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar"
+                    style="width:60%"
+                ></div>
+
+            </div>
+
+
+            <div class="emoji">
+                🌹
+            </div>
+
+
+            <h2>
+                Do you wanna go on a date?
+            </h2>
+
+
+            <button
+                class="yes"
+                onclick="answerQ3('Yes')"
+            >
+
+                Yes ❤️
+
+            </button>
+
+
+            <button
+                class="no"
+                id="no3"
+                onmouseover="escapeButton('no3')"
+                ontouchstart="escapeButton('no3')"
+                onclick="escapeButton('no3')"
+            >
+
+                No 😈
+
+            </button>
+
+
+            <div
+                class="message"
+                id="message3"
+            ></div>
+
+        </section>
+
+
+
+        <!-- QUESTION 4 -->
+
+        <section
+            id="question4"
+            class="hidden"
+        >
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar"
+                    style="width:80%"
+                ></div>
+
+            </div>
+
+
+            <div class="emoji">
+                💑
+            </div>
+
+
+            <h2>
+                Where do you wanna go?
+            </h2>
+
+
+            <div class="options">
+
+
+                <button
+                    class="option"
+                    onclick="answerQ4('☕ Cafe')"
+                >
+
+                    ☕ Cafe
+
+                </button>
+
+
+                <button
+                    class="option"
+                    onclick="answerQ4('🌳 Park')"
+                >
+
+                    🌳 Park
+
+                </button>
+
+
+                <button
+                    class="option"
+                    onclick="answerQ4('🍽️ Restaurant')"
+                >
+
+                    🍽️ Restaurant
+
+                </button>
+
+
+                <button
+                    class="option"
+                    onclick="answerQ4('🏛️ Historical Place')"
+                >
+
+                    🏛️ Historical Place
+
+                </button>
+
+
+                <button
+                    class="option"
+                    onclick="answerQ4('🌙 A Quiet / Private Place')"
+                >
+
+                    🌙 A Quiet / Private Place
+
+                </button>
+
+
+                <button
+                    class="option"
+                    onclick="answerQ4('🎬 Movie')"
+                >
+
+                    🎬 Movie
+
+                </button>
+
+
+                <button
+                    class="option"
+                    onclick="answerQ4('🎢 Amusement Park')"
+                >
+
+                    🎢 Amusement Park
+
+                </button>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- QUESTION 5 -->
+
+        <section
+            id="question5"
+            class="hidden"
+        >
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar"
+                    style="width:100%"
+                ></div>
+
+            </div>
+
+
+            <div class="emoji">
+                📅
+            </div>
+
+
+            <h2>
+                When are we going? 😉
+            </h2>
+
+
+            <p>
+
+                Choose a day that works for you ❤️
+
+            </p>
+
+
+            <input
+                type="date"
+                id="dateInput"
+                class="date-input"
+            >
+
+
+            <br>
+
+
+            <button
+                class="yes"
+                onclick="submitDate()"
+            >
+
+                This Day ❤️
+
+            </button>
+
+        </section>
+
+
+
+        <!-- FINAL SCREEN -->
+
+        <section
+            id="final"
+            class="hidden"
+        >
+
+            <div class="final-heart">
+                ❤️
+            </div>
+
+
+            <h1>
+                It's A Date! 🥰
+            </h1>
+
+
+            <p id="finalMessage"></p>
+
+
+            <p>
+
+                I guess there's only one thing
+                left to say...
+
+                <br><br>
+
+                <strong>
+                    See you on our date. 😉❤️
+                </strong>
+
+            </p>
+
+
+            <button
+                class="restart"
+                onclick="location.reload()"
+            >
+
+                Start Again
+
+            </button>
+
+        </section>
+
+
+    </div>
+
+
+
+    <script>
+
+
+        /* ===================================
+           ANSWERS
+        =================================== */
+
+        let answers = {
+
+            knowsMe: "",
+
+            likesMe: "",
+
+            wantsDate: "",
+
+            datePlace: "",
+
+            date: ""
+
+        };
+
+
+
+        /* ===================================
+           SECTION SWITCHER
+        =================================== */
+
+        function showSection(id) {
+
+            const sections = [
+
+                "start",
+
+                "question1",
+
+                "question2",
+
+                "question3",
+
+                "question4",
+
+                "question5",
+
+                "final"
+
+            ];
+
+
+            sections.forEach(section => {
+
+                document
+                    .getElementById(section)
+                    .classList
+                    .add("hidden");
+
+            });
+
+
+            document
+                .getElementById(id)
+                .classList
+                .remove("hidden");
+
+        }
+
+
+
+        /* ===================================
+           START
+        =================================== */
+
+        function startQuiz() {
+
+            showSection("question1");
+
+        }
+
+
+
+        /* ===================================
+           QUESTION 1
+        =================================== */
+
+        function answerQ1(answer) {
+
+            answers.knowsMe = answer;
+
+            showSection("question2");
+
+        }
+
+
+
+        /* ===================================
+           QUESTION 2
+        =================================== */
+
+        function answerQ2(answer) {
+
+            answers.likesMe = answer;
+
+            showSection("question3");
+
+        }
+
+
+
+        /* ===================================
+           QUESTION 3
+        =================================== */
+
+        function answerQ3(answer) {
+
+            answers.wantsDate = answer;
+
+            showSection("question4");
+
+        }
+
+
+
+        /* ===================================
+           DODGE NO BUTTON
+        =================================== */
+
+        function escapeButton(id) {
+
+            const button =
+                document.getElementById(id);
+
+
+            const container =
+                document.querySelector(".container");
+
+
+            const rect =
+                container.getBoundingClientRect();
+
+
+            const buttonWidth =
+                button.offsetWidth;
+
+
+            const buttonHeight =
+                button.offsetHeight;
+
+
+            const maxX =
+                Math.max(
+                    80,
+                    rect.width - buttonWidth - 80
+                );
+
+
+            const maxY = 180;
+
+
+            const randomX =
+                Math.floor(
+                    Math.random() * maxX
+                ) - maxX / 2;
+
+
+            const randomY =
+                Math.floor(
+                    Math.random() * maxY
+                ) - 70;
+
+
+            button.style.transform =
+                `translate(${randomX}px, ${randomY}px)`;
+
+
+            if (id === "no2") {
+
+                const messages = [
+
+                    "Nice try 😂",
+
+                    "Nope! You can't escape 😏",
+
+                    "That button doesn't work ❤️",
+
+                    "I know what you're trying to do 👀",
+
+                    "Just click Yes already 😂❤️"
+
+                ];
+
+
+                document
+                    .getElementById("message2")
+                    .innerText =
+                    messages[
+                        Math.floor(
+                            Math.random()
+                            * messages.length
+                        )
+                    ];
+
+            }
+
+
+
+            if (id === "no3") {
+
+                const messages = [
+
+                    "You're not getting away that easily 😏",
+
+                    "Wrong button 😂",
+
+                    "The universe says YES ❤️",
+
+                    "Try again... oh wait, you can't 😌",
+
+                    "I think we both know the answer 😉"
+
+                ];
+
+
+                document
+                    .getElementById("message3")
+                    .innerText =
+                    messages[
+                        Math.floor(
+                            Math.random()
+                            * messages.length
+                        )
+                    ];
+
+            }
+
+        }
+
+
+
+        /* ===================================
+           QUESTION 4
+        =================================== */
+
+        function answerQ4(place) {
+
+            answers.datePlace = place;
+
+            showSection("question5");
+
+        }
+
+
+
+        /* ===================================
+           QUESTION 5
+        =================================== */
+
+        async function submitDate() {
+
+            const dateInput =
+                document.getElementById(
+                    "dateInput"
+                );
+
+
+            if (!dateInput.value) {
+
+                alert(
+                    "Pehle date choose karo ❤️"
+                );
+
+                return;
+
+            }
+
+
+            answers.date =
+                dateInput.value;
+
+
+            const selectedDate =
+                new Date(
+                    dateInput.value
+                );
+
+
+            const formattedDate =
+                selectedDate.toLocaleDateString(
+                    "en-IN",
+                    {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric"
+                    }
+                );
+
+
+            document
+                .getElementById("finalMessage")
+                .innerHTML =
+
+                `So... we're going on a date
+                at <strong>
+                ${answers.datePlace}
+                </strong> ❤️
+
+                <br><br>
+
+                And you chose
+                <strong>
+                ${formattedDate}
+                </strong>! 🥰
+
+                <br><br>
+
+                I think this is officially a date. 😉❤️`;
+
+
+
+            showSection("final");
+
+
+
+            /* Save answers */
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/submit",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body:
+                                JSON.stringify(
+                                    answers
+                                )
+                        }
+                    );
+
+
+                const result =
+                    await response.json();
+
+
+                console.log(
+                    result.message
+                );
+
+            }
+
+            catch (error) {
+
+                console.log(
+                    "Could not save answers:",
+                    error
+                );
+
+            }
+
+
+            createHeartBurst();
+
+        }
+
+
+
+        /* ===================================
+           FLOATING HEARTS
+        =================================== */
+
+        function createHeart() {
+
+            const heart =
+                document.createElement(
+                    "div"
+                );
+
+
+            heart.className =
+                "heart";
+
+
+            const symbols = [
+
+                "❤️",
+
+                "💕",
+
+                "💗",
+
+                "💖",
+
+                "💘"
+
+            ];
+
+
+            heart.innerText =
+                symbols[
+                    Math.floor(
+                        Math.random()
+                        * symbols.length
+                    )
+                ];
+
+
+            heart.style.left =
+                Math.random() * 100 + "%";
+
+
+            heart.style.fontSize =
+                (
+                    15 +
+                    Math.random() * 25
+                ) + "px";
+
+
+            heart.style.animationDuration =
+                (
+                    5 +
+                    Math.random() * 6
+                ) + "s";
+
+
+            document
+                .getElementById("hearts")
+                .appendChild(heart);
+
+
+            setTimeout(
+                () => heart.remove(),
+                12000
+            );
+
+        }
+
+
+
+        /* Create hearts continuously */
+
+        setInterval(
+            createHeart,
+            500
+        );
+
+
+
+        /* ===================================
+           HEART BURST
+        =================================== */
+
+        function createHeartBurst() {
+
+            for (
+                let i = 0;
+                i < 25;
+                i++
+            ) {
+
+                setTimeout(
+                    () => {
+                        createHeart();
+                    },
+                    i * 80
+                );
+
+            }
+
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>
