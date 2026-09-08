@@ -5,10 +5,7 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>A Little Question For You ❤️</title>
 
@@ -18,7 +15,6 @@
         * {
             box-sizing: border-box;
         }
-
 
         body {
 
@@ -51,7 +47,7 @@
         }
 
 
-        /* Floating hearts */
+        /* Floating Hearts */
 
         .hearts {
 
@@ -62,6 +58,8 @@
             pointer-events: none;
 
             overflow: hidden;
+
+            z-index: 1;
         }
 
 
@@ -70,8 +68,6 @@
             position: absolute;
 
             bottom: -50px;
-
-            font-size: 22px;
 
             animation:
                 floatUp
@@ -109,13 +105,17 @@
         }
 
 
-        /* Main card */
+        /* Main Card */
 
         .container {
 
             width: min(92%, 620px);
 
             min-height: 520px;
+
+            padding: 40px 30px;
+
+            text-align: center;
 
             background:
                 rgba(255, 255, 255, 0.16);
@@ -131,10 +131,6 @@
                 rgba(255, 255, 255, 0.3);
 
             border-radius: 30px;
-
-            padding: 40px 30px;
-
-            text-align: center;
 
             box-shadow:
                 0 20px 60px
@@ -184,7 +180,7 @@
         }
 
 
-        /* Hide sections */
+        /* Hide */
 
         .hidden {
 
@@ -242,10 +238,44 @@
                 rgba(0, 0, 0, 0.2);
 
             color: white;
+
+            position: relative;
         }
 
 
-        /* Date-place options */
+        /* Progress */
+
+        .progress {
+
+            height: 6px;
+
+            width: 100%;
+
+            background:
+                rgba(255, 255, 255, 0.2);
+
+            border-radius: 10px;
+
+            margin-bottom: 30px;
+
+            overflow: hidden;
+        }
+
+
+        .progress-bar {
+
+            height: 100%;
+
+            background: white;
+
+            border-radius: 10px;
+
+            transition:
+                width 0.5s ease;
+        }
+
+
+        /* Date Options */
 
         .options {
 
@@ -287,38 +317,6 @@
         }
 
 
-        /* Progress bar */
-
-        .progress {
-
-            height: 6px;
-
-            width: 100%;
-
-            background:
-                rgba(255, 255, 255, 0.2);
-
-            border-radius: 10px;
-
-            margin-bottom: 30px;
-
-            overflow: hidden;
-        }
-
-
-        .progress-bar {
-
-            height: 100%;
-
-            background: white;
-
-            border-radius: 10px;
-
-            transition:
-                width 0.5s ease;
-        }
-
-
         /* Messages */
 
         .message {
@@ -331,7 +329,7 @@
         }
 
 
-        /* Date input */
+        /* Date Picker */
 
         .date-input {
 
@@ -354,7 +352,7 @@
         }
 
 
-        /* Final heart */
+        /* Final */
 
         .final-heart {
 
@@ -367,7 +365,8 @@
 
         @keyframes beat {
 
-            0%, 100% {
+            0%,
+            100% {
 
                 transform:
                     scale(1);
@@ -415,6 +414,7 @@
                 padding:
                     13px 22px;
             }
+
         }
 
     </style>
@@ -425,7 +425,7 @@
 <body>
 
 
-    <!-- Floating hearts -->
+    <!-- Floating Hearts -->
 
     <div
         class="hearts"
@@ -433,16 +433,16 @@
     ></div>
 
 
-    <!-- Main container -->
+    <!-- Main Container -->
 
     <div class="container">
 
 
-        <!-- START SCREEN -->
+        <!-- =================================
+             START SCREEN
+        ================================== -->
 
-        <section
-            id="start"
-        >
+        <section id="start">
 
             <div class="emoji">
                 💌
@@ -479,7 +479,9 @@
 
 
 
-        <!-- QUESTION 1 -->
+        <!-- =================================
+             QUESTION 1
+        ================================== -->
 
         <section
             id="question1"
@@ -529,7 +531,9 @@
 
 
 
-        <!-- QUESTION 2 -->
+        <!-- =================================
+             QUESTION 2
+        ================================== -->
 
         <section
             id="question2"
@@ -588,7 +592,9 @@
 
 
 
-        <!-- QUESTION 3 -->
+        <!-- =================================
+             QUESTION 3
+        ================================== -->
 
         <section
             id="question3"
@@ -647,7 +653,9 @@
 
 
 
-        <!-- QUESTION 4 -->
+        <!-- =================================
+             QUESTION 4
+        ================================== -->
 
         <section
             id="question4"
@@ -753,7 +761,9 @@
 
 
 
-        <!-- QUESTION 5 -->
+        <!-- =================================
+             QUESTION 5
+        ================================== -->
 
         <section
             id="question5"
@@ -781,9 +791,7 @@
 
 
             <p>
-
                 Choose a day that works for you ❤️
-
             </p>
 
 
@@ -810,7 +818,9 @@
 
 
 
-        <!-- FINAL SCREEN -->
+        <!-- =================================
+             FINAL SCREEN
+        ================================== -->
 
         <section
             id="final"
@@ -860,12 +870,16 @@
 
 
 
+    <!-- =====================================
+         JAVASCRIPT
+    ====================================== -->
+
     <script>
 
 
-        /* ===================================
+        /* ---------------------------------
            ANSWERS
-        =================================== */
+        ---------------------------------- */
 
         let answers = {
 
@@ -883,9 +897,9 @@
 
 
 
-        /* ===================================
-           SECTION SWITCHER
-        =================================== */
+        /* ---------------------------------
+           SHOW SECTION
+        ---------------------------------- */
 
         function showSection(id) {
 
@@ -908,14 +922,16 @@
             ];
 
 
-            sections.forEach(section => {
+            sections.forEach(
+                function(section) {
 
-                document
-                    .getElementById(section)
-                    .classList
-                    .add("hidden");
+                    document
+                        .getElementById(section)
+                        .classList
+                        .add("hidden");
 
-            });
+                }
+            );
 
 
             document
@@ -927,9 +943,9 @@
 
 
 
-        /* ===================================
-           START
-        =================================== */
+        /* ---------------------------------
+           START QUIZ
+        ---------------------------------- */
 
         function startQuiz() {
 
@@ -939,9 +955,9 @@
 
 
 
-        /* ===================================
+        /* ---------------------------------
            QUESTION 1
-        =================================== */
+        ---------------------------------- */
 
         function answerQ1(answer) {
 
@@ -953,9 +969,9 @@
 
 
 
-        /* ===================================
+        /* ---------------------------------
            QUESTION 2
-        =================================== */
+        ---------------------------------- */
 
         function answerQ2(answer) {
 
@@ -967,9 +983,9 @@
 
 
 
-        /* ===================================
+        /* ---------------------------------
            QUESTION 3
-        =================================== */
+        ---------------------------------- */
 
         function answerQ3(answer) {
 
@@ -981,9 +997,9 @@
 
 
 
-        /* ===================================
-           DODGE NO BUTTON
-        =================================== */
+        /* ---------------------------------
+           ESCAPE NO BUTTON
+        ---------------------------------- */
 
         function escapeButton(id) {
 
@@ -992,7 +1008,9 @@
 
 
             const container =
-                document.querySelector(".container");
+                document.querySelector(
+                    ".container"
+                );
 
 
             const rect =
@@ -1009,29 +1027,42 @@
 
             const maxX =
                 Math.max(
-                    80,
-                    rect.width - buttonWidth - 80
+                    100,
+                    rect.width -
+                    buttonWidth -
+                    100
                 );
 
 
-            const maxY = 180;
+            const maxY = 170;
 
 
             const randomX =
                 Math.floor(
-                    Math.random() * maxX
-                ) - maxX / 2;
+                    Math.random() *
+                    maxX
+                )
+                -
+                maxX / 2;
 
 
             const randomY =
                 Math.floor(
-                    Math.random() * maxY
-                ) - 70;
+                    Math.random() *
+                    maxY
+                )
+                -
+                70;
 
 
             button.style.transform =
-                `translate(${randomX}px, ${randomY}px)`;
+                `translate(
+                    ${randomX}px,
+                    ${randomY}px
+                )`;
 
+
+            /* Q2 Messages */
 
             if (id === "no2") {
 
@@ -1051,18 +1082,22 @@
 
 
                 document
-                    .getElementById("message2")
+                    .getElementById(
+                        "message2"
+                    )
                     .innerText =
+
                     messages[
                         Math.floor(
-                            Math.random()
-                            * messages.length
+                            Math.random() *
+                            messages.length
                         )
                     ];
 
             }
 
 
+            /* Q3 Messages */
 
             if (id === "no3") {
 
@@ -1082,12 +1117,15 @@
 
 
                 document
-                    .getElementById("message3")
+                    .getElementById(
+                        "message3"
+                    )
                     .innerText =
+
                     messages[
                         Math.floor(
-                            Math.random()
-                            * messages.length
+                            Math.random() *
+                            messages.length
                         )
                     ];
 
@@ -1097,23 +1135,27 @@
 
 
 
-        /* ===================================
+        /* ---------------------------------
            QUESTION 4
-        =================================== */
+        ---------------------------------- */
 
         function answerQ4(place) {
 
-            answers.datePlace = place;
+            answers.datePlace =
+                place;
 
-            showSection("question5");
+            showSection(
+                "question5"
+            );
 
         }
 
 
 
-        /* ===================================
+        /* ---------------------------------
            QUESTION 5
-        =================================== */
+           SAVE TO DATABASE
+        ---------------------------------- */
 
         async function submitDate() {
 
@@ -1122,6 +1164,8 @@
                     "dateInput"
                 );
 
+
+            /* Check date */
 
             if (!dateInput.value) {
 
@@ -1134,13 +1178,18 @@
             }
 
 
+            /* Save selected date */
+
             answers.date =
                 dateInput.value;
 
 
+            /* Format date */
+
             const selectedDate =
                 new Date(
-                    dateInput.value
+                    dateInput.value +
+                    "T00:00:00"
                 );
 
 
@@ -1149,14 +1198,20 @@
                     "en-IN",
                     {
                         day: "numeric",
+
                         month: "long",
+
                         year: "numeric"
                     }
                 );
 
 
+            /* Final message */
+
             document
-                .getElementById("finalMessage")
+                .getElementById(
+                    "finalMessage"
+                )
                 .innerHTML =
 
                 `So... we're going on a date
@@ -1173,15 +1228,16 @@
 
                 <br><br>
 
-                I think this is officially a date. 😉❤️`;
+                I think this is officially
+                a date. 😉❤️`;
 
 
+            /* Show final */
 
             showSection("final");
 
 
-
-            /* Save answers */
+            /* Send answers to Flask */
 
             try {
 
@@ -1209,14 +1265,14 @@
 
 
                 console.log(
-                    result.message
+                    "Server:",
+                    result
                 );
 
-            }
 
-            catch (error) {
+            } catch (error) {
 
-                console.log(
+                console.error(
                     "Could not save answers:",
                     error
                 );
@@ -1224,15 +1280,17 @@
             }
 
 
+            /* Heart explosion */
+
             createHeartBurst();
 
         }
 
 
 
-        /* ===================================
-           FLOATING HEARTS
-        =================================== */
+        /* ---------------------------------
+           CREATE FLOATING HEART
+        ---------------------------------- */
 
         function createHeart() {
 
@@ -1256,7 +1314,9 @@
 
                 "💖",
 
-                "💘"
+                "💘",
+
+                "💓"
 
             ];
 
@@ -1264,37 +1324,48 @@
             heart.innerText =
                 symbols[
                     Math.floor(
-                        Math.random()
-                        * symbols.length
+                        Math.random() *
+                        symbols.length
                     )
                 ];
 
 
             heart.style.left =
-                Math.random() * 100 + "%";
+                Math.random() * 100 +
+                "%";
 
 
             heart.style.fontSize =
                 (
                     15 +
                     Math.random() * 25
-                ) + "px";
+                ) +
+                "px";
 
 
             heart.style.animationDuration =
                 (
                     5 +
                     Math.random() * 6
-                ) + "s";
+                ) +
+                "s";
 
 
             document
-                .getElementById("hearts")
-                .appendChild(heart);
+                .getElementById(
+                    "hearts"
+                )
+                .appendChild(
+                    heart
+                );
 
 
             setTimeout(
-                () => heart.remove(),
+                function() {
+
+                    heart.remove();
+
+                },
                 12000
             );
 
@@ -1302,7 +1373,9 @@
 
 
 
-        /* Create hearts continuously */
+        /* ---------------------------------
+           CONTINUOUS HEARTS
+        ---------------------------------- */
 
         setInterval(
             createHeart,
@@ -1311,23 +1384,25 @@
 
 
 
-        /* ===================================
+        /* ---------------------------------
            HEART BURST
-        =================================== */
+        ---------------------------------- */
 
         function createHeartBurst() {
 
             for (
                 let i = 0;
-                i < 25;
+                i < 30;
                 i++
             ) {
 
                 setTimeout(
-                    () => {
+                    function() {
+
                         createHeart();
+
                     },
-                    i * 80
+                    i * 70
                 );
 
             }
